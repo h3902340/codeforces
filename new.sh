@@ -1,4 +1,4 @@
-mkdir -p $1
+mkdir -p $1/testcases
 cp template $1/$2.cc
 sed -i '' "s/xxxx/$1/g" $1/$2.cc
 sed -i '' "s/yyyy/$2/g" $1/$2.cc
