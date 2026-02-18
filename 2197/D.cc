@@ -7,18 +7,38 @@ using namespace std;
 
 int solve(int n, vector<int>& a) {
     int res = 0;
+    int b = 1;
+    while (b * b < n) {
+        b++;
+    }
     for (int i = 0; i < n; i++) {
-        int m = 1;
-        int j = a[i] + i;
-        while (j < n) {
-            if (j >= n) {
-                break;
+        if (a[i] < b) {
+            int j = i;
+            for (int k = 1; k < b; k++) {
+                j += a[i];
+                if (j >= n) {
+                    break;
+                }
+                if (a[j] == k) {
+                    res++;
+                }
             }
-            if (a[j] == m) {
-                res++;
+        } else {
+            int j = i;
+            int j2 = i;
+            for (int k = 1; k < b; k++) {
+                j += a[i];
+                j2 -= a[i];
+                if (j >= n && j2 < 0) {
+                    break;
+                }
+                if (j < n && a[j] == k) {
+                    res++;
+                }
+                if (j2 >= 0 && a[j2] == k) {
+                    res++;
+                }
             }
-            m++;
-            j += a[i];
         }
     }
     return res;
