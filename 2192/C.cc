@@ -12,9 +12,13 @@ void solve() {
         cin >> a[i];
         s += a[i];
     }
-    // h-1: Keep the last the layer because swapping might improve the time.
-    int q = (h - 1) / s;
-    int r = h - s * q;
+    int q = h / s;
+    int r = h % s;
+    if (r == 0) {
+        ll t = (ll)q * (n + k) - k;
+        cout << t << endl;
+        return;
+    }
     ll t = (ll)q * (n + k);
     int b = 0;
     vector<int> rmx(n);
